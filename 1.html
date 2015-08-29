@@ -1,0 +1,315 @@
+
+
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Helvetica", Times, sans-serif;
+        font-size: 1em;
+    }
+
+    #gamesheet {
+        width: 100%;
+        font-size: 0;
+        padding: 4px 0 0 4px;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    .container {
+        box-sizing: border-box;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 1em;
+        padding: 0 4px 4px 0;
+        overflow: hidden;
+    }
+
+    .container > .container:last-child {
+        padding-right: 0;
+    }
+
+    .container > .container {
+        padding-bottom: 0;
+    }
+
+    .container .table {
+        border: 1px solid #CCC;
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    .container .table.no-color {
+        border: 0;
+    }
+
+    .container .table.just-border {
+        border: 1px solid #CCC;
+    }
+
+    .container .table thead {
+        font-weight: bold;
+    }
+
+    .container .table td {
+        padding: 3px;
+        line-height: 16px;
+    }
+
+    .container .table td:not(.multi-line) {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .container .table.condensed td {
+        line-height: 10px;
+    }
+
+    .container .table thead .title, .container .table td.center, h1.title {
+        text-align: center;
+    }
+
+    .container .table .title {
+        font-weight: bold;
+    }
+
+    .container .table .empty:before {
+        display: block;
+        content: '\0000a0';
+        height: 100%;
+    }
+
+    .container .table:not(.no-color) tbody tr, .container .table:not(.no-color) thead tr {
+        border-bottom: 1px solid #CCC;
+    }
+
+    .container .table:not(.no-color) tbody td:not(:last-child) {
+        border-right: 1px solid #CCC;
+    }
+
+    .container .table:not(.no-color) tbody tr:nth-child(even) {
+        background: #EFEFEF;
+    }
+
+    .container .table.top-details td span {
+        display: inline-block;
+    }
+
+    .container .table td.checkbox {
+        width: 18px;
+    }
+
+    .container .table td.number {
+        width: 35px;
+    }
+
+    .container.text-small .table {
+        font-size: 12px;
+    }
+
+    .container.text-medium .table {
+        font-size: 12px;
+    }
+
+    .container .table thead .subheading {
+        font-size: 12px;
+    }
+
+    .print-only {
+        display: none;
+    }
+
+    .container .blank {
+        text-decoration: underline;
+        margin: 0 2px;
+    }
+
+    .container.full {
+        width: 100%;
+    }
+
+    .container.three-quarter {
+        width: 75%;
+    }
+
+    .container.two-third {
+        width: 66.66%;
+    }
+
+    .container.half {
+        width: 50%;
+    }
+
+    .container.third {
+        width: 33.33%;
+    }
+
+    .container.quarter {
+        width: 25%;
+    }
+
+    .container.length-of-game-container thead td {
+        padding: 8px 3px;
+    }
+
+    .container.length-of-game-container tbody td {
+        padding: 6px 3px;
+    }
+
+    .table.forward-copy tbody td {
+        height: 85px;
+    }
+
+    .table.referee td {
+        height: 31px;
+    }
+
+    .container .table.signature tbody td {
+        height: 27px;
+    }
+
+    .svg {
+        text-align: center;
+    }
+
+    .svg svg {
+        height: 20px;
+    }
+
+    .bg-fit {
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+    }
+
+    .print-bar {
+        padding: 10px;
+        display: block;
+        height: 30px;
+    }
+
+    .print-bar button {
+        float: right;
+        height: 30px;
+    }
+
+    .style-button {
+        -moz-box-shadow: inset 0px 1px 0px 0px #54a3f7;
+        -webkit-box-shadow: inset 0px 1px 0px 0px #54a3f7;
+        box-shadow: inset 0px 1px 0px 0px #54a3f7;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+        background: -moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+        background: -webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+        background: -o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+        background: -ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+        background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7', GradientType=0);
+        background-color: #007dc1;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        border: 1px solid #124d77;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: arial;
+        font-size: 13px;
+        padding: 6px 24px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #154682;
+        outline: transparent;
+    }
+
+    .style-button:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+        background: -moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+        background: -webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+        background: -o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+        background: -ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+        background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1', GradientType=0);
+        background-color: #0061a7;
+    }
+
+    .style-button:active {
+        position: relative;
+        top: 1px;
+    }
+
+    @media (max-width: 1620px) {
+        .container.text-small .table {
+            font-size: 10px;
+        }
+    }
+
+    @media (max-width: 1500px) {
+        .container.text-medium .table thead .subheading {
+            font-size: 11px;
+        }
+    }
+
+    @media (max-width: 1385px) {
+        .container.text-medium .table {
+            font-size: 11px;
+        }
+    }
+
+    @media (max-width: 1325px) {
+        #gamesheet > .container.half {
+            width: 100%;
+        }
+
+        .container.text-medium .table, .container.text-medium .table thead .subheading {
+            font-size: 12px;
+        }
+    }
+
+    @media print {
+        #gamesheet {
+            width: 1400px;
+        }
+
+        #gamesheet > .container.half {
+            width: 50%;
+        }
+
+        .container.text-medium .table {
+            font-size: 12px;
+        }
+
+        @page {
+            size: legal landscape;
+            margin: 0.13in 0.11in;
+        }
+
+        .no-print {
+            display: none;
+        }
+
+        .print-only {
+            display: inline;
+        }
+    }
+</style>
+<div class="print-bar no-print"><button class="style-button" onclick="window.print()">Print</button></div><div id="gamesheet"><span class="container half"><span class="container quarter"><table class="table"><tr><td style="border-right: 0;"><span>Game No:</span></td><td><span>None</span></td></tr></table></span><span class="container three-quarter" style="padding-right: 0;"><table class="table"><tr><td class="title"><span>Final Score</span></td><td><span><strong>Home: </strong>0</span></td><td><span><strong>Visitor: </strong>0</span></td></tr></table></span><br><span class="container full text-small" style="margin-top: 20px;"><table class="table no-color top-details"><tbody><tr><td><span class="title">Date:&nbsp;</span><span>July 8, 2015</span></td><td><span class="title">Division:&nbsp;</span><span>wlGYLrMCxDne</span></td></tr><tr><td><span class="title">Location:&nbsp;</span><span>None</span></td><td><span class="title">League:&nbsp;</span><span>uOuGmRXXrIvw</span></td></tr><tr><td colspan="2"><span class="title">Category:&nbsp;</span><span>SJqAXYE</span></td></tr><tr><td colspan="2"><span class="title">PLAYOFF GAME</span>
+                            &nbsp;&nbsp;
+                            
+                            <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            
+                            &nbsp;&nbsp;
+                            <span class="title">LEAGUE</span><span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            &nbsp;&nbsp;
+                            
+                            <span class="title">GAME</span><span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="title">OF</span><span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr></tbody></table></span></span><span class="container half"><span class="container quarter" style="height: 150px;"><table class="table no-color just-border" style="height: 100%;"><thead><tr><td colspan="2" class="title"><span>GAME TYPE</span></td></tr></thead><tbody><tr><td class="checkbox center"><input type="checkbox" name="ZwhHYnI" id="ZwhHYnI" disabled checked><label for="ZwhHYnI">ZwhHYnI</label></td></tr></tbody></table></span><span class="container half"><table class="table"><tbody><tr><td class="title"><span>Official Scorer:</span></td><td><span>NA</span></td></tr><tr><td class="title"><span>Phone #</span></td><td><span>NA</span></td></tr></tbody></table><span class="container full"><span class="container three-quarter" style="padding-top: 4px; height: 103px;"><table class="table" style="height: 100%;"><thead><tr><td><span>Curfew Time</span></td><td><span>V init</span></td><td><span>H init</span></td></tr></thead><tbody><tr><td><span>None</span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr></tbody></table></span><span class="container quarter text-small" style="padding-top: 4px;"><table class="table"><thead><tr><td colspan="2"><span>Flood Between</span></td></tr><tbody><tr><td class="checkbox"><input type="checkbox" disabled ></td><td><span>1st &amp; 2nd</span></td></tr><tr><td class="checkbox"><input type="checkbox" disabled ></td><td><span>2nd &amp; 3rd</span></td></tr><tr><td class="checkbox"><input type="checkbox" disabled ></td><td><span>None</span></td></tr></tbody></thead></table></span></span></span><span class="container quarter length-of-game-container"><table class="table"><thead><tr><td colspan="3"><span>Length of Game</span></td></tr></thead><tbody><tr><td><span>1st</span></td><td><span>20</span></td><td><span>Stop</span></td></tr><tr><td><span>2nd</span></td><td><span>20</span></td><td><span>Stop</span></td></tr><tr><td><span>3rd</span></td><td><span>20</span></td><td><span>Stop</span></td></tr><tr><td><span>OT</span></td><td><span>10</span></td><td><span>S/V</span></td></tr></tbody></table></span></span><br><span class="container half text-medium"><span class="container third"><table class="table condensed"><thead><tr><td colspan="2" class="title"><span>Home - axvAiBUzVUnN</span></td></tr><tr class="subheading"><td class="number"><span>No.</span></td><td><span>Name</span></td></tr></thead><tbody><tr><td><span>NA</span></td><td><span>NA
+                    
+                    </span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr></tbody></table><table class="table condensed" style="border-top: 0;"><thead><tr><td><span>Susp. Players/Officials</span></td><td><span>No. of Games</span></td></tr></thead><tbody><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr></tbody></table></span><span class="container third"><table class="table condensed"><thead><tr><td colspan="7" class="title"><span>Home Penalties</span></td></tr><tr class="subheading"><td><span>PER.</span></td><td><span>NO.</span></td><td><span>Min</span></td><td><span title="Code Infraction">CI</span></td><td><span>Off</span></td><td><span>Start</span></td><td><span>On</span></td></tr></thead><tbody><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td class="title" colspan="6"><span>Total Penalty Minutes</span></td><td><span></span></td></tr></tbody></table></span><span class="container third"><table class="table condensed"><thead><tr><td colspan="5" class="title"><span>Home Scoring</span></td></tr><tr class="subheading"><td><span>Per</span></td><td><span>TIME</span></td><td><span>G</span></td><td><span>A</span></td><td><span>A</span></td></tr></thead><tbody><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td class="title" colspan="4"><span>Total Goals</span></td><td><span>0</span></td></tr></tbody></table></span></span><span class="container half text-medium"><span class="container third"><table class="table condensed"><thead><tr><td colspan="2" class="title"><span>Home - ZoCUqdpNBeai</span></td></tr><tr class="subheading"><td class="number"><span>No.</span></td><td><span>Name</span></td></tr></thead><tbody><tr><td><span>NA</span></td><td><span>NA
+                    
+                    </span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr></tbody></table><table class="table condensed" style="border-top: 0;"><thead><tr><td><span>Susp. Players/Officials</span></td><td><span>No. of Games</span></td></tr></thead><tbody><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td></tr></tbody></table></span><span class="container third"><table class="table condensed"><thead><tr><td colspan="7" class="title"><span>Home Penalties</span></td></tr><tr class="subheading"><td><span>PER.</span></td><td><span>NO.</span></td><td><span>Min</span></td><td><span title="Code Infraction">CI</span></td><td><span>Off</span></td><td><span>Start</span></td><td><span>On</span></td></tr></thead><tbody><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td class="title" colspan="6"><span>Total Penalty Minutes</span></td><td><span></span></td></tr></tbody></table></span><span class="container third"><table class="table condensed"><thead><tr><td colspan="5" class="title"><span>Home Scoring</span></td></tr><tr class="subheading"><td><span>Per</span></td><td><span>TIME</span></td><td><span>G</span></td><td><span>A</span></td><td><span>A</span></td></tr></thead><tbody><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td class="title" colspan="4"><span>Total Goals</span></td><td><span>0</span></td></tr></tbody></table></span></span><br><span class="container half"><span class="container full"><table class="table signature"><tbody><tr><td><span class="title">NA</span></td><td>NA</td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr></tbody></table></span></span><span class="container half"><span class="container full"><table class="table signature"><tbody><tr><td><span class="title">NA</span></td><td>NA</td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr></tbody></table></span></span><br><span class="container half"><table class="table forward-copy"><thead><tr><td><span>Forward White Copy Immediately to:</span></td></tr></thead><tbody><tr><td><span></span></td></tr></tbody></table></span><span class="container half"><span class="container three-quarter"><table class="table signature"><tbody><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr><tr><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td><td><span class="empty"></span></td></tr></tbody></table></span><span class="container quarter"><table class="table signature"><tbody><tr><td><span class="title">Time Started</span></td></tr><tr><td><span>None</span></td></tr><tr><td><span class="title">Ended</span></td></tr><tr><td><span>--</span></td></tr></tbody></table></span></span><h1 class="title">Referee's Report</h1><span class="container full page-separator"><table class="table"><thead><tr><td><span>Team</span></td><td><span>No.</span></td><td><span>Player</span></td><td><span>Per</span></td><td><span>Time</span></td><td><span>Penalty</span></td></tr></thead><tbody></tbody></table></span><h1 class="title">Referee's Notes</h1></div>
